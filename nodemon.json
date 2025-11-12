@@ -1,0 +1,20 @@
+{
+  "watch": [
+    "index.ts",
+    "plugins/**/*.ts",
+    ".env"
+  ],
+  "ext": "ts,json,env",
+  "ignore": [
+    "node_modules/**",
+    "kachina-session/**",
+    "dist/**",
+    "*.log",
+    ".git/**"
+  ],
+  "delay": "1000",
+  "verbose": true,
+  "execMap": {
+    "ts": "tsx"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.session
+*.log
+kachina-session/
+database.json
+dist/

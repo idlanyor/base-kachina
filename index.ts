@@ -1,4 +1,4 @@
-import { Client, ClientOptions } from '@roidev/kachina-md';
+import { Client, ClientOptions } from '@antidonasi/kachina';
 import dotenv from 'dotenv';
 dotenv.config()
 import path from 'path';
@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Plugins path - must load from dist/plugins (compiled JS)
-// Library @roidev/kachina-md only supports .js files for plugins
+// Library @antidonasi/kachina only supports .js files for plugins
 const pluginsPath = __dirname.endsWith('dist')
   ? path.join(__dirname, 'plugins')
   : path.join(__dirname, 'dist', 'plugins');

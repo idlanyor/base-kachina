@@ -1,6 +1,6 @@
 # WhatsApp Bot dengan Kachina-MD
 
-Bot WhatsApp yang dibuat menggunakan framework [@roidev/kachina-md](https://github.com/idlanyor/kachina-core)
+Bot WhatsApp yang dibuat menggunakan framework [@antidonasi/kachina](https://github.com/idlanyor/kachina-core)
 
 ## Fitur
 
@@ -127,7 +127,7 @@ Plugin akan otomatis ter-load saat bot dijalankan.
 Bot menggunakan LowDB untuk database. Contoh penggunaan:
 
 ```javascript
-import { db } from '@roidev/kachina-md';
+import { db } from '@antidonasi/kachina';
 
 // Set data
 await db.set('users.123.name', 'John');
@@ -164,4 +164,4 @@ MIT
 
 ## Credit
 
-- Framework: [@roidev/kachina-md](https://github.com/idlanyor/kachina-core)
+- Framework: [@antidonasi/kachina](https://github.com/idlanyor/kachina-core)

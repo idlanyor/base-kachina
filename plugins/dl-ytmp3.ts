@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import { getRyzumi } from "../provider/ryzumi.js";
 export default {
     name: 'ytmp3',

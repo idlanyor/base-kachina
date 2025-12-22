@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from '@roidev/kachina-md';
+import { Plugin, PluginContext } from '@antidonasi/kachina';
 import { setWelcomeMessage, toggleWelcome, getGroupSettings, getDefaultWelcomeMessage } from '../utils/database.js';
 
 export default {

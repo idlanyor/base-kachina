@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from '@roidev/kachina-md';
+import { Plugin, PluginContext } from '@antidonasi/kachina';
 import { setAntitoxic, getGroupSettings, addToxicWord, removeToxicWord } from '../utils/database.js';
 
 export default {

@@ -1,4 +1,4 @@
-import Client, { Plugin, PluginContext } from "@roidev/kachina-md";
+import Client, { Plugin, PluginContext } from "@antidonasi/kachina";
 import { formatUptime } from "../utils/message.js";
 
 export default {

@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import { PostAntidonasi } from "../provider/antidonasi.js";
 
 export default {

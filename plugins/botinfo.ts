@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import { formatUptime, formatFileSize, formatNumber } from "../utils/message.js";
 import si from "systeminformation";
 import os from "os";

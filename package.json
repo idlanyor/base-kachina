@@ -1,7 +1,7 @@
 {
   "name": "whatsapp-bot-kachina",
   "version": "1.0.0",
-  "description": "WhatsApp Bot menggunakan @roidev/kachina-md",
+  "description": "WhatsApp Bot menggunakan @antidonasi/kachina",
   "main": "index.ts",
   "type": "module",
   "scripts": {
@@ -19,11 +19,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@roidev/kachina-md": "../kachina-core",
+    "@antidonasi/kachina": "^0.0.5",
     "axios": "^1.13.2",
     "baileys": "^7.0.0-rc.9",
     "dotenv": "^16.6.1",
-    "jimp": "^0.16.13",
+    "jimp": "^1.6.0",
     "lowdb": "^7.0.1",
     "systeminformation": "^5.27.11"
   },

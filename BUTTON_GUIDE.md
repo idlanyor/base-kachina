@@ -1,6 +1,6 @@
 # 📱 Panduan Implementasi Button di Kachina-MD
 
-Dokumentasi lengkap penggunaan button interaktif di bot WhatsApp menggunakan @roidev/kachina-md v2.3.0
+Dokumentasi lengkap penggunaan button interaktif di bot WhatsApp menggunakan @antidonasi/kachina v2.3.0
 
 ## 📋 Daftar Isi
 
@@ -341,7 +341,7 @@ Mengirim pesan dengan template buttons (quick reply, URL, call).
 ## 📖 Referensi
 
 - [Kachina-MD Documentation](https://kachina-core.antidonasi.web.id/)
-- [Kachina-MD NPM](https://www.npmjs.com/package/@roidev/kachina-md)
+- [Kachina-MD NPM](https://www.npmjs.com/package/@antidonasi/kachina)
 - [Kachina-Core GitHub](https://github.com/idlanyor/kachina-core)
 
 ## ✨ Contoh Plugin Lengkap
@@ -353,4 +353,4 @@ Lihat file berikut untuk contoh implementasi lengkap:
 
 ---
 
-**Dibuat dengan ❤️ menggunakan @roidev/kachina-md v2.3.0**
+**Dibuat dengan ❤️ menggunakan @antidonasi/kachina v2.3.0**

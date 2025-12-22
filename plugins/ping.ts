@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from '@roidev/kachina-md';
+import { Plugin, PluginContext } from '@antidonasi/kachina';
 import si from 'systeminformation';
 
 export default {

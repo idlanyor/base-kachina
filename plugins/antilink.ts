@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from '@roidev/kachina-md';
+import { Plugin, PluginContext } from '@antidonasi/kachina';
 import { setAntilink, getGroupSettings } from '../utils/database.js';
 
 export default {

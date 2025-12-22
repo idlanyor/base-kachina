@@ -526,7 +526,7 @@ await sendSuccess(m, 'Berhasil!', { react: false });
 ## 9. Complete Plugin Example
 
 ```typescript
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import {
   sendInvalidUsage,
   sendInvalidUrl,
@@ -598,7 +598,7 @@ export default {
 ## 10. Advanced Example - With Permissions
 
 ```typescript
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import {
   sendOwnerOnly,
   sendGroupOnly,

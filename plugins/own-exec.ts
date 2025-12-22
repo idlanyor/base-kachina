@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from "@roidev/kachina-md";
+import { Plugin, PluginContext } from "@antidonasi/kachina";
 import { exec } from "child_process";
 import util from "util";
 import { sendInvalidUsage, sendTimeout } from "../utils/message.js";

@@ -1,4 +1,4 @@
-import { SerializedMessage } from "@roidev/kachina-md";
+import { SerializedMessage } from "@antidonasi/kachina";
 
 /**
  * Message Helper untuk WhatsApp Bot

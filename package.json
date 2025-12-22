@@ -5,8 +5,9 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "tsc && bun run index.ts",
-    "dev": "tsc && bun --watch index.ts",
+    "start": "npm run build && node dist/index.js",
+    "start:bun": "npm run build && bun run index.ts",
+    "dev": "nodemon",
     "build": "tsc",
     "clean": "rm -rf dist"
   },
@@ -18,9 +19,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@roidev/kachina-md": "^2.1.9",
+    "@roidev/kachina-md": "../kachina-core",
     "axios": "^1.13.2",
+    "baileys": "^7.0.0-rc.9",
     "dotenv": "^16.6.1",
+    "jimp": "^0.16.13",
+    "lowdb": "^7.0.1",
     "systeminformation": "^5.27.11"
   },
   "devDependencies": {

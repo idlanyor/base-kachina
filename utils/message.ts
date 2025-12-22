@@ -1,10 +1,76 @@
 import { SerializedMessage } from "@roidev/kachina-md";
-import { react, Emoji } from "./react";
 
 /**
  * Message Helper untuk WhatsApp Bot
  * Mempermudah pengiriman pesan standar dengan format yang konsisten
  */
+
+// ==================== EMOJI CONSTANTS ====================
+
+const Emoji = {
+  // Status
+  LOADING: '⏳',
+  SUCCESS: '✅',
+  ERROR: '❌',
+  WARNING: '⚠️',
+  INFO: 'ℹ️',
+
+  // Process
+  HOURGLASS: '⏳',
+  CLOCK: '⏰',
+  TIMER: '⏱️',
+  STOPWATCH: '⏲️',
+
+  // Emotions
+  THUMBS_UP: '👍',
+  THUMBS_DOWN: '👎',
+  FIRE: '🔥',
+  HEART: '❤️',
+  STAR: '⭐',
+  SPARKLES: '✨',
+  PARTY: '🎉',
+  ROCKET: '🚀',
+
+  // Actions
+  SEARCH: '🔍',
+  DOWNLOAD: '⬇️',
+  UPLOAD: '⬆️',
+  REFRESH: '🔄',
+  DELETE: '🗑️',
+  EDIT: '✏️',
+  SAVE: '💾',
+
+  // Symbols
+  CHECK: '✔️',
+  CROSS: '✖️',
+  QUESTION: '❓',
+  EXCLAMATION: '❗',
+  PLUS: '➕',
+  MINUS: '➖',
+
+  // Others
+  THINKING: '🤔',
+  EYES: '👀',
+  ROBOT: '🤖',
+  COMPUTER: '💻',
+  BOOK: '📖',
+  LOCK: '🔒',
+  UNLOCK: '🔓',
+  KEY: '🔑',
+} as const;
+
+type EmojiType = typeof Emoji[keyof typeof Emoji];
+
+// ==================== REACT HELPER FUNCTION ====================
+
+async function react(m: SerializedMessage, emoji: string): Promise<void> {
+  try {
+    await m.react(emoji);
+  } catch (error) {
+    // Silently handle react errors, don't crash the message sending
+    console.debug('Failed to react:', error);
+  }
+}
 
 // ==================== MESSAGE TYPES ====================
 

@@ -665,29 +665,3 @@ export default {
 3. **Gunakan format helpers** untuk menampilkan angka, ukuran file, durasi, dll dengan format yang konsisten
 4. **Kombinasikan dengan React helper** untuk UX yang lebih baik (emoji + message)
 5. **Gunakan validation helpers** untuk mengurangi code repetition
-
----
-
-## Integration with React Helper
-
-Kombinasi message + react helper untuk UX terbaik:
-
-```typescript
-import { processReact, Emoji } from "../utils/react";
-import { sendSuccess, sendError } from "../utils/message";
-
-async exec({ m }: PluginContext) {
-  try {
-    await processReact(m, async () => {
-      // Do something
-      await doSomething();
-
-      // Send success message (react sudah otomatis dari processReact)
-      await sendSuccess(m, 'Berhasil!', { react: false });
-    });
-  } catch (error: any) {
-    // Send error message (react sudah otomatis dari processReact)
-    await sendError(m, error.message, { react: false });
-  }
-}
-```

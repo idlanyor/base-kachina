@@ -1,5 +1,6 @@
-import { Client } from '@roidev/kachina-md';
-import 'dotenv/config';
+import { Client, ClientOptions } from '@roidev/kachina-md';
+import dotenv from 'dotenv';
+dotenv.config()
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -17,16 +18,18 @@ const __dirname = dirname(__filename);
 
 // Plugins path - must load from dist/plugins (compiled JS)
 // Library @roidev/kachina-md only supports .js files for plugins
-const pluginsPath = path.join(__dirname, 'dist', 'plugins');
+const pluginsPath = __dirname.endsWith('dist')
+  ? path.join(__dirname, 'plugins')
+  : path.join(__dirname, 'dist', 'plugins');
 
 // Konfigurasi bot
 const bot = new Client({
   sessionId: process.env.SESSION_ID || 'kachina-session',
-  loginMethod: 'pairing',
-  phoneNumber: '6282134216100',
+  loginMethod:'pairing',
+  phoneNumber:'6282134216100',
   prefix: process.env.PREFIX || '!',
   owner: process.env.OWNER_NUMBER ? process.env.OWNER_NUMBER.split(',') : ['628xxx'],
-} as any);
+} as ClientOptions);
 
 // Event: Bot siap digunakan
 bot.on('ready', async (user: any) => {

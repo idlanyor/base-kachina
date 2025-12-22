@@ -1,5 +1,5 @@
 import { Plugin, PluginContext } from "@roidev/kachina-md";
-import { PostAntidonasi } from "../provider/antidonasi";
+import { PostAntidonasi } from "../provider/antidonasi.js";
 
 export default {
     name: 'fb-downloader',

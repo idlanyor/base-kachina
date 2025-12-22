@@ -1,6 +1,5 @@
 import Client, { Plugin, PluginContext } from "@roidev/kachina-md";
-import { formatUptime } from "../utils/message";
-import { QuickReact } from "../utils/react";
+import { formatUptime } from "../utils/message.js";
 
 export default {
   name: 'menu',
@@ -14,7 +13,6 @@ export default {
       return await showPluginInfo(m, client, prefix, args[0]);
     }
 
-    await QuickReact.loading(m);
 
     try {
       // Get all loaded plugins
@@ -26,11 +24,9 @@ export default {
       // Build menu text
       const menuText = buildMenuText(client, prefix, groupedPlugins, plugins.length);
 
-      await QuickReact.success(m);
       await m.reply(menuText);
 
     } catch (error: any) {
-      await QuickReact.error(m);
       await m.reply(`❌ Error: ${error.message}`);
     }
   }
@@ -135,40 +131,50 @@ function buildMenuText(
     : client.config.owner;
 
   const uptime = formatUptime(process.uptime());
+  
+  // Time based greeting
+  const hours = new Date().getHours();
+  let greeting = 'Selamat Malam 🌙';
+  if (hours >= 4 && hours < 11) greeting = 'Selamat Pagi ☀️';
+  else if (hours >= 11 && hours < 15) greeting = 'Selamat Siang 🌤️';
+  else if (hours >= 15 && hours < 19) greeting = 'Selamat Sore 🌇';
 
   // Header
   let menu = `
-╭━━━━━━━━━━━━━━━━━━━━
-┃ 🤖 *WHATSAPP BOT MENU*
-┃━━━━━━━━━━━━━━━━━━━━
-┃ 👤 Owner: ${ownerList}
-┃ 🔧 Prefix: ${prefix}
-┃ 📦 Plugins: ${totalPlugins}
-┃ ⏱️ Uptime: ${uptime}
-╰━━━━━━━━━━━━━━━━━━━━
+┏━━❪ 🤖 *WHATSAPP BOT* ❫━━
+┃
+┃ ${greeting}
+┃
+┃ ⚡ *Prefix:* [ ${prefix} ]
+┃ 📦 *Total Plugins:* ${totalPlugins}
+┃ ⏳ *Uptime:* ${uptime}
+┃
+┗━━━━━━━━━━━━━━━━━━━
 
 `;
 
   // Category mapping for icons
   const categoryIcons: Record<string, string> = {
-    general: '📋',
+    general: '📝',
     owner: '👑',
-    group: '👥',
-    downloader: '⬇️',
-    fun: '🎉',
-    tools: '🔧',
-    uncategorized: '📌',
+    group: '🏢',
+    downloader: '📥',
+    fun: '🎮',
+    tools: '🛠️',
+    internet: '🌐',
+    uncategorized: '📂',
   };
 
   // Category names in Indonesian
   const categoryNames: Record<string, string> = {
-    general: 'UMUM',
-    owner: 'OWNER',
-    group: 'GRUP',
-    downloader: 'DOWNLOADER',
-    fun: 'HIBURAN',
-    tools: 'TOOLS',
-    uncategorized: 'LAINNYA',
+    general: 'General',
+    owner: 'Owner',
+    group: 'Group',
+    downloader: 'Downloader',
+    fun: 'Fun & Games',
+    tools: 'Tools',
+    internet: 'Internet',
+    uncategorized: 'Others',
   };
 
   // Sort categories (owner first, then alphabetically)
@@ -183,12 +189,10 @@ function buildMenuText(
   // Build menu for each category
   for (const category of sortedCategories) {
     const plugins = groupedPlugins[category];
-    const icon = categoryIcons[category] || '📌';
+    const icon = categoryIcons[category] || '📂';
     const name = categoryNames[category] || category.toUpperCase();
 
-    menu += `╭━━━━━━━━━━━━━━━━━━━━\n`;
-    menu += `┃ ${icon} *${name}*\n`;
-    menu += `┃━━━━━━━━━━━━━━━━━━━━\n`;
+    menu += `⭓ *${name.toUpperCase()}*\n`;
 
     for (const plugin of plugins) {
       // Get first command as the primary command
@@ -196,23 +200,21 @@ function buildMenuText(
         ? plugin.commands[0]
         : plugin.commands;
 
-      const desc = plugin.description || 'No description';
-
       // Add owner indicator
-      const ownerBadge = plugin.owner ? '👑 ' : '';
-
-      menu += `┃ ${ownerBadge}${prefix}${command}\n`;
-      menu += `┃   └ ${desc}\n`;
+      const ownerBadge = plugin.owner ? '👑' : '';
+      
+      menu += `${prefix}${command} ${ownerBadge}\n`;
     }
-
-    menu += `╰━━━━━━━━━━━━━━━━━━━━\n\n`;
+    menu += `\n`;
   }
 
   // Footer
-  menu += `💡 *Info:*\n`;
-  menu += `• Kirim ${prefix}<command> untuk menggunakan\n`;
-  menu += `• Kirim ${prefix}menu <command> untuk detail\n`;
-  menu += `• 👑 = Command khusus owner\n`;
+  menu += `┏━━❪ *INFO* ❫
+┃
+┃ 💡 Ketik *${prefix}menu <command>*
+┃ untuk melihat detail command.
+┃
+┗━━━━━━━━━━━━━━━━━━━`;
 
   return menu.trim();
 }
@@ -226,7 +228,6 @@ async function showPluginInfo(
   prefix: string,
   commandName: string
 ): Promise<void> {
-  await QuickReact.loading(m);
 
   const plugins = await getLoadedPlugins(client);
 
@@ -239,7 +240,6 @@ async function showPluginInfo(
   });
 
   if (!plugin) {
-    await QuickReact.error(m);
     return await m.reply(
       `❌ *Plugin tidak ditemukan!*\n\nCommand "${commandName}" tidak ada.\n\nGunakan ${prefix}menu untuk melihat daftar command.`
     );
@@ -251,39 +251,38 @@ async function showPluginInfo(
     : [plugin.commands];
 
   const categoryIcon: Record<string, string> = {
-    general: '📋',
+    general: '📝',
     owner: '👑',
-    group: '👥',
-    downloader: '⬇️',
-    fun: '🎉',
-    tools: '🔧',
+    group: '🏢',
+    downloader: '📥',
+    fun: '🎮',
+    tools: '🛠️',
   };
 
-  const icon = categoryIcon[plugin.category] || '📌';
+  const icon = categoryIcon[plugin.category] || '📂';
 
   let info = `
-╭━━━━━━━━━━━━━━━━━━━━
-┃ ${icon} *PLUGIN INFO*
-┃━━━━━━━━━━━━━━━━━━━━
+┏━━❪ *PLUGIN DETAILS* ❫
 ┃
-┃ *Name:* ${plugin.name}
-┃ *Category:* ${plugin.category || 'uncategorized'}
-┃ *Description:*
-┃   ${plugin.description || 'No description'}
+┃ ${icon} *Name:* ${plugin.name}
+┃ 🏷️ *Category:* ${plugin.category || 'uncategorized'}
 ┃
-┃ *Commands:*
-${commands.map((cmd: string) => `┃   • ${prefix}${cmd}`).join('\n')}
+┃ 📝 *Description:*
+┃ ${plugin.description || 'No description'}
 ┃
-┃ *Restrictions:*
-${plugin.owner ? '┃   • 👑 Owner only' : ''}
-${plugin.admin ? '┃   • 👮 Admin only' : ''}
-${plugin.group ? '┃   • 👥 Group only' : ''}
-${plugin.private ? '┃   • 💬 Private only' : ''}
-${plugin.botAdmin ? '┃   • 🤖 Bot must be admin' : ''}
-${!plugin.owner && !plugin.admin && !plugin.group && !plugin.private ? '┃   • ✅ No restrictions' : ''}
-╰━━━━━━━━━━━━━━━━━━━━
+┃ ⌨️ *Commands:*
+${commands.map((cmd: string) => `┃ ◦ ${prefix}${cmd}`).join('\n')}
+┃
+┃ 🔒 *Permissions:*
+${plugin.owner ? '┃ 👑 Owner only' : ''}
+${plugin.admin ? '┃ 👮 Admin only' : ''}
+${plugin.group ? '┃ 🏢 Group only' : ''}
+${plugin.private ? '┃ 💬 Private only' : ''}
+${plugin.botAdmin ? '┃ 🤖 Bot must be admin' : ''}
+${!plugin.owner && !plugin.admin && !plugin.group && !plugin.private ? '┃ ✅ No restrictions' : ''}
+┃
+┗━━━━━━━━━━━━━━━━━━━
   `.trim();
 
-  await QuickReact.info(m);
   await m.reply(info);
 }

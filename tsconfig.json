@@ -18,6 +18,7 @@
   },
   "include": [
     "index.ts",
+    "utils/**/*.ts",
     "plugins/**/*.ts",
     "provider/**/*.ts"
   ],

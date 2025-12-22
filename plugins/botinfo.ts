@@ -1,6 +1,5 @@
 import { Plugin, PluginContext } from "@roidev/kachina-md";
-import { formatUptime, formatFileSize, formatNumber } from "../utils/message";
-import { QuickReact } from "../utils/react";
+import { formatUptime, formatFileSize, formatNumber } from "../utils/message.js";
 import si from "systeminformation";
 import os from "os";
 
@@ -11,7 +10,6 @@ export default {
   description: 'Menampilkan informasi bot dan statistik',
 
   async exec({ m, client }: PluginContext) {
-    await QuickReact.loading(m);
 
     try {
       // Get system info
@@ -90,7 +88,6 @@ export default {
 • Baileys (WhatsApp Web API)
       `.trim();
 
-      await QuickReact.success(m);
 
       // Send with mentions
       const mentions = Array.isArray(client.config.owner)
@@ -100,7 +97,6 @@ export default {
       await m.reply(info, { mentions });
 
     } catch (error: any) {
-      await QuickReact.error(m);
       await m.reply(`❌ Error: ${error.message}`);
     }
   }

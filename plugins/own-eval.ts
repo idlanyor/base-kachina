@@ -1,7 +1,6 @@
 import { Plugin, PluginContext } from "@roidev/kachina-md";
 import util from "util";
-import { sendInvalidUsage, sendError } from "../utils/message";
-import { react, Emoji } from "../utils/react";
+import { sendInvalidUsage, sendError } from "../utils/message.js";
 
 export default {
   name: 'eval',
@@ -21,7 +20,6 @@ export default {
     }
 
     try {
-      await react(m, Emoji.LOADING);
 
       const code = args.join(' ');
 
@@ -39,7 +37,6 @@ export default {
         result = result.substring(0, maxLength) + '...';
       }
 
-      await react(m, Emoji.SUCCESS);
       await m.reply(`✅ *EVAL RESULT:*\n\n\`\`\`js\n${result}\n\`\`\``);
 
     } catch (error: any) {

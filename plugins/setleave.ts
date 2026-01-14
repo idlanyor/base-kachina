@@ -8,7 +8,6 @@ export default {
   commands: ['setleave', 'setl'],
 
   async exec({ m, args }: PluginContext) {
-    // Check if in group
     if (!m.isGroup) {
       return m.reply('❌ Command ini hanya bisa digunakan di grup!');
     }

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "start:bun": "npm run build && bun run index.ts",
-    "dev": "nodemon",
+    "dev": "npx tsc && nodemon",
     "build": "tsc",
     "clean": "rm -rf dist"
   },
